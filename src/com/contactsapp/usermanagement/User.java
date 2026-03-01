@@ -44,4 +44,8 @@ public class User {
 		return userType.toString();
 	}
 	
+	public String getPasswordHash() {
+		return hashedPassword;
+	}
+	
 }
