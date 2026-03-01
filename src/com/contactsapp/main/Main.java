@@ -3,6 +3,9 @@ package com.contactsapp.main;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import com.contactsapp.contactmanagement.Contact;
+import com.contactsapp.contactmanagement.OrganizationContact;
+import com.contactsapp.contactmanagement.PersonContact;
 import com.contactsapp.usermanagement.BasicAuth;
 import com.contactsapp.usermanagement.ProfileManagement;
 import com.contactsapp.usermanagement.RegisterUser;
@@ -17,10 +20,11 @@ import com.contactsapp.usermanagement.UserType;
  * This class serves as the application entry point.
  * It demonstrates basic registration with validation, authentication and user profile management.
  * Lets users update profile information, password.
+ * Let's users create contacts of 2 types (Person, Organization)
  * 
  * 
  * @author Developer
- * @version 3.0
+ * @version 4.0
  */
 
 public class Main {
@@ -31,7 +35,7 @@ public class Main {
 		BasicAuth basicAuth = new BasicAuth();
 		SessionManagement sessionManagement = new SessionManagement();
 		ProfileManagement profileManagement = new ProfileManagement();
-
+				;
 		System.out.println("Enter your name:");
 		String name = scanner.nextLine();
 		
@@ -113,6 +117,35 @@ public class Main {
 					break;
 				}
 			}
+			
+			System.out.println("Create a new contact");
+			System.out.println("Enter type of contact:\n1.Person\n2.Organization");
+			int contactType = scanner.nextInt();
+			scanner.nextLine();
+			if (contactType == 1) {
+				Contact contact = new PersonContact(name);
+				System.out.println("Enter email:");
+				String contactEmail = scanner.nextLine();
+				contact.addEmail(contactEmail);
+				
+				System.out.println("Enter phoneNumber:");
+				String contactPhoneNumber = scanner.nextLine();
+				contact.addPhoneNumber(contactPhoneNumber);
+				
+				System.out.println(contact.getContactType());
+			} else if (contactType == 2) {
+				Contact contact = new OrganizationContact(name);
+				System.out.println("Enter email:");
+				String contactEmail = scanner.nextLine();
+				contact.addEmail(contactEmail);
+				
+				System.out.println("Enter phoneNumber:");
+				String contactPhoneNumber = scanner.nextLine();
+				contact.addPhoneNumber(contactPhoneNumber);
+				
+				System.out.println(contact.getContactType());
+			}
+			
 			
 			sessionManagement.logout(sessionId);
 		} else {
