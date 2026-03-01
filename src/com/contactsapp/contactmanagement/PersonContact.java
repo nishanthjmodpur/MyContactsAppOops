@@ -1,5 +1,7 @@
 package com.contactsapp.contactmanagement;
 
+import java.util.ArrayList;
+
 /**
  * UC4: Contact Creation
  * Defines a person contact. It extends from contact class

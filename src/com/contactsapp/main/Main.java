@@ -15,16 +15,16 @@ import com.contactsapp.usermanagement.User;
 import com.contactsapp.usermanagement.UserType;
 
 /**
- * MyContactsApp - Use case 3: User Profile Management
- * 
+ * MyContactsApp - Use case 5: View Contacts * 
  * This class serves as the application entry point.
  * It demonstrates basic registration with validation, authentication and user profile management.
  * Lets users update profile information, password.
  * Let's users create contacts of 2 types (Person, Organization)
+ * Lets users view existing contacts (prints contacts)
  * 
  * 
  * @author Developer
- * @version 4.0
+ * @version 5.0
  */
 
 public class Main {
@@ -133,6 +133,7 @@ public class Main {
 				contact.addPhoneNumber(contactPhoneNumber);
 				
 				System.out.println(contact.getContactType());
+				System.out.println(contact.toString());
 			} else if (contactType == 2) {
 				Contact contact = new OrganizationContact(name);
 				System.out.println("Enter email:");
@@ -144,6 +145,7 @@ public class Main {
 				contact.addPhoneNumber(contactPhoneNumber);
 				
 				System.out.println(contact.getContactType());
+				System.out.println(contact.toString());
 			}
 			
 			

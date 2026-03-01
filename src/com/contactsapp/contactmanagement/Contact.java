@@ -5,8 +5,10 @@ import java.util.UUID;
 
 /**
  * UC4: Contact Creation
+ * UC5: View Contacts
  * Defines an abstract contact class
  * defines getters and setters for the class
+ * override toString() method to change display contacts format
  */
 
 public abstract class Contact {
@@ -36,6 +38,11 @@ public abstract class Contact {
 	
 	public ArrayList<String> getEmails() {
 		return emails;
+	}
+	
+	@Override
+	public String toString() {
+		return "Name: " + name +"\n Phone numbers: " + phoneNumbers + "\nemails: " + emails;
 	}
 	
 	public abstract String getContactType();
