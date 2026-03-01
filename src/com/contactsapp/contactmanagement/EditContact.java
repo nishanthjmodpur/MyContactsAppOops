@@ -1,5 +1,8 @@
 package com.contactsapp.contactmanagement;
 
+/**
+ * UC6: Class is responsible for handling edit contacts feature
+ */
 public class EditContact {
 	public PersonContact editPersonContactName(PersonContact original, String newName) {
 		PersonContact updated = new PersonContact(original);

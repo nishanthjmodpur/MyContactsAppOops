@@ -7,6 +7,7 @@ import com.contactsapp.contactmanagement.Contact;
 import com.contactsapp.contactmanagement.EditContact;
 import com.contactsapp.contactmanagement.OrganizationContact;
 import com.contactsapp.contactmanagement.PersonContact;
+import com.contactsapp.contactmanagement.UserContacts;
 import com.contactsapp.usermanagement.BasicAuth;
 import com.contactsapp.usermanagement.ProfileManagement;
 import com.contactsapp.usermanagement.RegisterUser;
@@ -22,10 +23,12 @@ import com.contactsapp.usermanagement.UserType;
  * Lets users update profile information, password.
  * Let's users create contacts of 2 types (Person, Organization)
  * Lets users view existing contacts (prints contacts)
+ * Lets users edit contacts
+ * Lets users delete contacts
  * 
  * 
  * @author Developer
- * @version 5.0
+ * @version 7.0
  */
 
 public class Main {
@@ -36,6 +39,7 @@ public class Main {
 		BasicAuth basicAuth = new BasicAuth();
 		SessionManagement sessionManagement = new SessionManagement();
 		ProfileManagement profileManagement = new ProfileManagement();
+		UserContacts userContacts = new UserContacts();
 				;
 		System.out.println("Enter your name:");
 		String name = scanner.nextLine();
@@ -74,7 +78,7 @@ public class Main {
 			while (true) {
 				System.out.println("Do you want to change profile information (y/n)");
 				String choiceYN = scanner.next();
-				if (choiceYN.equals("y")) {
+				if (choiceYN.equals("y".toLowerCase())) {
 					System.out.println("Enter your choice:\n1.Name\n2.Email\3.Password\n4.Phone number\n5.UserType(1.Free, 2.Premium)");
 					int choice = scanner.nextInt();
 					scanner.nextLine();
@@ -137,9 +141,10 @@ public class Main {
 				System.out.println(contact.toString());
 				
 				EditContact editContact = new EditContact();
-				contact = editContact.editPersonContactName(contact, name);
-				
+				contact = editContact.editPersonContactName(contact, "newName");
 				System.out.println(contact.toString());
+				
+				userContacts.addContact(contact);
 			} else if (contactType == 2) {
 				OrganizationContact contact = new OrganizationContact(name);
 				System.out.println("Enter email:");
@@ -155,8 +160,16 @@ public class Main {
 				
 				EditContact editContact = new EditContact();
 				editContact.editOrganiationContactName(contact, "newName");
+				System.out.println(contact.toString());
+				
+				userContacts.addContact(contact);
 			}
 			
+			System.out.println("Do you want to delete a contact?");
+			String deleteChoice = scanner.nextLine();
+			if (deleteChoice.toLowerCase().equals("y")) {
+				userContacts.deleteContact(scanner);
+			}
 			
 			sessionManagement.logout(sessionId);
 		} else {
