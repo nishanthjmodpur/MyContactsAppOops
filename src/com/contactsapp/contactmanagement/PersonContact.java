@@ -13,6 +13,10 @@ public class PersonContact extends Contact {
 		super(name);
 	}
 	
+	public PersonContact(PersonContact contact) {
+		super(contact);
+	}
+	
 	@Override
 	public String getContactType() {
 		return "PERSON";

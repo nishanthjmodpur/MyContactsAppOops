@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import com.contactsapp.contactmanagement.Contact;
+import com.contactsapp.contactmanagement.EditContact;
 import com.contactsapp.contactmanagement.OrganizationContact;
 import com.contactsapp.contactmanagement.PersonContact;
 import com.contactsapp.usermanagement.BasicAuth;
@@ -123,7 +124,7 @@ public class Main {
 			int contactType = scanner.nextInt();
 			scanner.nextLine();
 			if (contactType == 1) {
-				Contact contact = new PersonContact(name);
+				PersonContact contact = new PersonContact(name);
 				System.out.println("Enter email:");
 				String contactEmail = scanner.nextLine();
 				contact.addEmail(contactEmail);
@@ -133,9 +134,14 @@ public class Main {
 				contact.addPhoneNumber(contactPhoneNumber);
 				
 				System.out.println(contact.getContactType());
+				System.out.println(contact.toString());
+				
+				EditContact editContact = new EditContact();
+				contact = editContact.editPersonContactName(contact, name);
+				
 				System.out.println(contact.toString());
 			} else if (contactType == 2) {
-				Contact contact = new OrganizationContact(name);
+				OrganizationContact contact = new OrganizationContact(name);
 				System.out.println("Enter email:");
 				String contactEmail = scanner.nextLine();
 				contact.addEmail(contactEmail);
@@ -146,6 +152,9 @@ public class Main {
 				
 				System.out.println(contact.getContactType());
 				System.out.println(contact.toString());
+				
+				EditContact editContact = new EditContact();
+				editContact.editOrganiationContactName(contact, "newName");
 			}
 			
 			

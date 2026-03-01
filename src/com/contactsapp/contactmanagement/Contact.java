@@ -24,6 +24,13 @@ public abstract class Contact {
 		this.emails = new ArrayList<String>();
 	}
 	
+	public Contact(Contact contact) {
+		this.contactId = contact.contactId;
+		this.name = contact.name;
+		this.phoneNumbers = new ArrayList<String>(contact.phoneNumbers);
+		this.emails = new ArrayList<String>(contact.emails);
+	}
+	
 	public void addPhoneNumber(String phoneNumber) {
 		phoneNumbers.add(phoneNumber);
 	}
@@ -44,6 +51,19 @@ public abstract class Contact {
 	public String toString() {
 		return "Name: " + name +"\n Phone numbers: " + phoneNumbers + "\nemails: " + emails;
 	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void editPhoneNumbers(int index, String newPhoneNumber) {
+		phoneNumbers.set(index, newPhoneNumber);
+	}
+	
+	public void editEmails(int index, String newEmail) {
+		emails.set(index, newEmail);
+	}
+	
 	
 	public abstract String getContactType();
 }

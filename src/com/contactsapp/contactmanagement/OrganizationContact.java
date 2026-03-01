@@ -9,6 +9,11 @@ public class OrganizationContact extends Contact {
 	public OrganizationContact(String companyName) {
 		super(companyName);
 	}
+	
+	public OrganizationContact(OrganizationContact contact) {
+		super(contact);
+	}
+
 
 	@Override
 	public String getContactType() {
