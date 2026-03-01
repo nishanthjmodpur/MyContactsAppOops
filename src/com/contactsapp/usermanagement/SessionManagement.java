@@ -2,6 +2,12 @@ package com.contactsapp.usermanagement;
 
 import java.util.HashMap;
 
+/**
+ * UC2 - User Authentication and Session management
+ * This class is responsible for managing user sessions like creating new Session,
+ * retrieving active sessions, and logging out of the current session
+ */
+
 public class SessionManagement {
 	private HashMap<String, Session> sessions  = new HashMap<String, Session>();
 

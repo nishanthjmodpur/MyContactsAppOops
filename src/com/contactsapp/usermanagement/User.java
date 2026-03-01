@@ -2,6 +2,7 @@ package com.contactsapp.usermanagement;
 
 /**
  * This class defines the blueprint of an User object.
+ * Defines getters and setters for the class
  */
 
 public class User {
@@ -46,6 +47,26 @@ public class User {
 	
 	public String getPasswordHash() {
 		return hashedPassword;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public void setNewPassword(String password) {
+		this.hashedPassword = password;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 	
 }
