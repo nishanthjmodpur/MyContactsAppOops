@@ -1,5 +1,6 @@
 package com.contactsapp.contactmanagement;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -16,12 +17,16 @@ public abstract class Contact {
 	private String name;
 	private ArrayList<String> phoneNumbers;
 	private ArrayList<String> emails;
+	private LocalDateTime createdAt;
+	private int contactFrequency;
 	
 	public Contact(String name) {
 		this.contactId = UUID.randomUUID().toString();
 		this.name = name;
 		this.phoneNumbers = new ArrayList<String>();
 		this.emails = new ArrayList<String>();
+		this.createdAt = LocalDateTime.now();
+		this.contactFrequency = 0;
 	}
 	
 	public Contact(Contact contact) {
@@ -66,6 +71,14 @@ public abstract class Contact {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+	
+	public int getContactFrequency() {
+		return contactFrequency;
 	}
 	
 	
