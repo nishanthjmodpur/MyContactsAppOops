@@ -171,6 +171,12 @@ public class Main {
 				userContacts.deleteContact(scanner);
 			}
 			
+			System.out.println("Do you want to bulk delete contacts?");
+			String choice = scanner.nextLine();
+			if (choice.toLowerCase().equals("y")) {
+				userContacts.bulkDeleteContacts(scanner);
+			}
+			
 			sessionManagement.logout(sessionId);
 		} else {
 			System.out.println("Wrong username or password!!");
