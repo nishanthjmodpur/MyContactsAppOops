@@ -2,7 +2,11 @@ package com.contactsapp.contactmanagement;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+
+import com.contactsapp.tagsorganization.Tag;
 
 /**
  * UC4: Contact Creation
@@ -19,6 +23,7 @@ public abstract class Contact {
 	private ArrayList<String> emails;
 	private LocalDateTime createdAt;
 	private int contactFrequency;
+	private Set<Tag> tags = new HashSet<>();
 	
 	public Contact(String name) {
 		this.contactId = UUID.randomUUID().toString();
@@ -79,6 +84,14 @@ public abstract class Contact {
 	
 	public int getContactFrequency() {
 		return contactFrequency;
+	}
+	
+	public void addTag(Tag tag) {
+		tags.add(tag);
+	}
+	
+	public void removeTag(Tag tag) {
+		tags.remove(tag);
 	}
 	
 	

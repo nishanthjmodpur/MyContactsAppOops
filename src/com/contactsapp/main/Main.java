@@ -13,6 +13,7 @@ import com.contactsapp.contactsearch.ContactSearch;
 import com.contactsapp.contactsearch.EmailSearch;
 import com.contactsapp.contactsearch.NameSearch;
 import com.contactsapp.contactsearch.PhoneSearch;
+import com.contactsapp.tagsorganization.Tag;
 import com.contactsapp.usermanagement.BasicAuth;
 import com.contactsapp.usermanagement.ProfileManagement;
 import com.contactsapp.usermanagement.RegisterUser;
@@ -134,6 +135,7 @@ public class Main {
 			scanner.nextLine();
 			if (contactType == 1) {
 				PersonContact contact = new PersonContact(name);
+				Tag family = new Tag("Family");
 				System.out.println("Enter email:");
 				String contactEmail = scanner.nextLine();
 				contact.addEmail(contactEmail);
@@ -147,6 +149,7 @@ public class Main {
 				
 				EditContact editContact = new EditContact();
 				contact = editContact.editPersonContactName(contact, "newName");
+				contact.addTag(family);
 				System.out.println(contact.toString());
 				
 				userContacts.addContact(contact);
@@ -208,6 +211,7 @@ public class Main {
 					System.out.println(contact.toString());
 				}
 			}
+			
 			
 			sessionManagement.logout(sessionId);
 		} else {
