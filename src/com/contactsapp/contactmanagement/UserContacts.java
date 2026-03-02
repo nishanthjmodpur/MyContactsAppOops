@@ -23,6 +23,10 @@ public class UserContacts {
 		contacts.add(contact);
 	}
 	
+	public ArrayList<Contact> getAllContacts() {
+		return contacts;
+	}
+	
 	public void deleteContact(Scanner scanner) {
 		if (contacts.isEmpty()) {
 			System.out.println("No contacts to delete");

@@ -1,5 +1,6 @@
 package com.contactsapp.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -8,6 +9,10 @@ import com.contactsapp.contactmanagement.EditContact;
 import com.contactsapp.contactmanagement.OrganizationContact;
 import com.contactsapp.contactmanagement.PersonContact;
 import com.contactsapp.contactmanagement.UserContacts;
+import com.contactsapp.contactsearch.ContactSearch;
+import com.contactsapp.contactsearch.EmailSearch;
+import com.contactsapp.contactsearch.NameSearch;
+import com.contactsapp.contactsearch.PhoneSearch;
 import com.contactsapp.usermanagement.BasicAuth;
 import com.contactsapp.usermanagement.ProfileManagement;
 import com.contactsapp.usermanagement.RegisterUser;
@@ -165,16 +170,43 @@ public class Main {
 				userContacts.addContact(contact);
 			}
 			
-			System.out.println("Do you want to delete a contact?");
+			System.out.println("Do you want to delete a contact? (y/n)");
 			String deleteChoice = scanner.nextLine();
 			if (deleteChoice.toLowerCase().equals("y")) {
 				userContacts.deleteContact(scanner);
 			}
 			
-			System.out.println("Do you want to bulk delete contacts?");
+			System.out.println("Do you want to bulk delete contacts? (y/n)");
 			String choice = scanner.nextLine();
 			if (choice.toLowerCase().equals("y")) {
 				userContacts.bulkDeleteContacts(scanner);
+			}
+			
+			System.out.println("Search contacts");
+			System.out.println("Search bY:\n1.Name\n2.Email\n3.Phone");
+			int searchChoice = scanner.nextInt();
+			scanner.nextLine();
+			
+			ContactSearch search = null;
+			if (searchChoice == 1) {
+				search = new NameSearch();
+			} else if (searchChoice == 2) {
+				search = new EmailSearch();
+			} else if (searchChoice == 3) {
+				search = new PhoneSearch();
+			}
+			
+			System.out.println("Please enter search query:");
+			String query = scanner.nextLine();
+			
+			ArrayList<Contact> searchResults = search.searchContacts(userContacts.getAllContacts(), query);
+			if (searchResults.isEmpty()) {
+				System.out.println("No contacts found");
+			} else {
+				System.out.println("Search results:");
+				for (Contact contact : searchResults) {
+					System.out.println(contact.toString());
+				}
 			}
 			
 			sessionManagement.logout(sessionId);

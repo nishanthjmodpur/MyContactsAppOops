@@ -64,6 +64,10 @@ public abstract class Contact {
 		emails.set(index, newEmail);
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	
 	public abstract String getContactType();
 }
